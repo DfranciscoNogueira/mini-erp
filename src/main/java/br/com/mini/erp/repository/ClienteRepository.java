@@ -1,0 +1,17 @@
+package br.com.mini.erp.repository;
+
+
+import br.com.mini.erp.model.Cliente;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+
+    boolean existsByEmail(String email);
+
+    boolean existsByCpf(String cpf);
+
+    Page<Cliente> findByNomeContainingIgnoreCaseOrEmailContainingIgnoreCase(String nome, String email, Pageable pageable);
+
+}
